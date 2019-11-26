@@ -47,21 +47,14 @@ start_container () {
     else
         cp $FILE $FILE_FINAL
     fi
-    # Container image is harcoded at the moment, since Custom executor
-    # does not provide the value of `image`. See
-    # https://gitlab.com/gitlab-org/gitlab-runner/issues/4357 for
-    # details.
     az container create --resource-group "$RESOURCE_GROUP" --name ${CONTAINER_ID} --file ${FILE_FINAL} > $FILE
     # debug
-    cat $FILE
+    # cat $FILE
     IP=$(az container show --resource-group "$RESOURCE_GROUP" --name "$CONTAINER_ID" | jq -r .ipAddress.ip)
     rm $FILE
     rm $FILE_FINAL
     ssh-keyscan "$IP" >> ~/.ssh/known_hosts
-    ssh "$IP" git config --global http.sslVerify false
-    ssh "$IP" git config --global credential.helper store
-    ssh "$IP" git config --global credential.https://kotzilla-lfs.akronyme-analogiker.jetzt:8080.username gitlab
-    ssh "$IP" 'echo "https://gitlab:ballerngeil@kotzilla-lfs.akronyme-analogiker.jetzt%3a8080" > ~/.git-credentials'
+    cat config.sh setup-lfs-common.sh | ssh root@"$IP" "/bin/bash -s"
 }
 
 echo "Running in $CONTAINER_ID"
