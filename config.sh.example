@@ -1,5 +1,5 @@
 # Azure resource group
-RESOURCE_GROUP="kotzilla"
+RESOURCE_GROUP=""
 # Leave the following section empty if you are not using an external LFS
 # lfs url without https etc. something like: foo.bar.us:8000
 LFS_URL=""
