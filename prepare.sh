@@ -54,7 +54,7 @@ start_container () {
     rm $FILE
     rm $FILE_FINAL
     ssh-keyscan "$IP" >> ~/.ssh/known_hosts
-    cat config.sh setup-lfs-common.sh | ssh root@"$IP" "/bin/bash -s"
+    cat ${currentDir}/config.sh ${currentDir}/setup-lfs-common.sh | ssh root@"$IP" "/bin/bash -s"
 }
 
 echo "Running in $CONTAINER_ID"
