@@ -1,0 +1,8 @@
+RESOURCE_GROUP="kotzilla"
+# Leave the following section empty if you are not using an external LFS
+LFS_URL=""
+LFS_URL_ENCODED=""
+# set to 1 if you have self signed certificates
+LFS_DISABLE_CERT_CHECK=""
+LFS_USERNAME=""
+LFS_PASSWORD=""

@@ -1,0 +1,18 @@
+additional_properties: {}
+apiVersion: '2018-10-01'
+properties:
+  containers:
+  - properties:
+      command: []
+      ports:
+        - protocol: "TCP"
+          port: 22
+      resources:
+        requests:
+  ipAddress:
+    type: "Public"
+    ports:
+      - protocol: "TCP"
+        port: 22
+  osType: Linux
+  restartPolicy: Never
