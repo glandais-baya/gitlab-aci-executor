@@ -21,7 +21,7 @@ if [ -n "$CUSTOM_ENV_RUN_ON_HOST" ]; then
         exit 0
 fi
 
-IMAGE=${CUSTOM_ENV_IMAGE:-m0ppers/az-gitlab-runner-base}
+IMAGE=${CUSTOM_ENV_IMAGE:-m0ppers/gitlab-aci-executor-base}
 
 CPUS="1"
 MEM="1.5"
