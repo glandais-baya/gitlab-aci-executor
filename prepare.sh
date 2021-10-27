@@ -55,6 +55,8 @@ start_container () {
     IP=$(az container show --resource-group "$RESOURCE_GROUP" --name "$CONTAINER_ID" | jq -r .ipAddress.ip)
     rm $FILE
     rm $FILE_FINAL
+    echo "Waiting for $IP:22"
+    timeout 60 sh -c 'until nc -z $0 $1; do sleep 1; done' $IP 22
     echo "Getting ssh keys for $IP"
     ssh -o StrictHostKeyChecking=no root@"$IP" "echo ping"
     echo "Got ssh keys for $IP"
