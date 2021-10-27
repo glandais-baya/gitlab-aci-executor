@@ -39,7 +39,6 @@ fi
 source ${currentDir}/base.sh # Get variables from base.
 
 start_container () {
-    printenv | sort
     FILE=$(mktemp)
     FILE_FINAL=$(mktemp)
     cat ${currentDir}/template.yml | yq -y --arg image "${IMAGE}" --arg cpu "${CPUS}" --arg mem "${MEM}" --arg gpu "${GPUS}" --arg name "${CONTAINER_ID}" --arg cmd0 "sh" --arg cmd1 "-" --arg cmd1lolyq "c" --arg cmd2 "echo '$(cat ~/.ssh/id_rsa.pub)' >> ~/.ssh/authorized_keys && /usr/sbin/sshd -D" '.properties.containers[0].properties.image = $image | .properties.containers[0].properties.resources.requests.cpu = $cpu | .properties.containers[0].properties.resources.requests.memoryInGB = $mem | .properties.containers[0].name = $name | .properties.containers[0].properties.command = [$cmd0, $cmd1+$cmd1lolyq, $cmd2]' > $FILE
