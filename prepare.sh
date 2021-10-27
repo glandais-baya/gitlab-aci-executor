@@ -58,7 +58,7 @@ start_container () {
     sleep 10
     echo "Getting ssh keys for {$IP}"
     ssh-keyscan "$IP" >> ~/.ssh/known_hosts
-    cat ${currentDir}/config.sh ${currentDir}/setup-lfs-common.sh | ssh root@"$IP" "/bin/bash -s"
+    cat ${currentDir}/config.sh | ssh root@"$IP" "/bin/bash -s"
     echo "Container ready"
 }
 

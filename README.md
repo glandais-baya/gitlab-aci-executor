@@ -5,7 +5,7 @@
 This is assuming a debian buster installation. Might vary!
 
 ```
-apt-get install -y python3-pip jq git-lfs docker.io
+apt-get install -y python3-pip jq docker.io
 pip3 install yq
 ```
 
@@ -20,13 +20,6 @@ https://docs.gitlab.com/runner/install/linux-repository.html
 Choose `custom` when it asks for executor type.
 
 Clone this repo to /opt/gitlab-aci-executor
-
-```
-cd /opt/gitlab-aci-executor
-cp config.sh.example config.sh
-# edit config.sh
-./setup-lfs.sh
-```
 
 Setup a ssh key:
 
