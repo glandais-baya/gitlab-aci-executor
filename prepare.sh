@@ -60,7 +60,6 @@ start_container () {
     echo "Getting ssh keys for $IP"
     ssh -o StrictHostKeyChecking=no root@"$IP" "echo ping"
     echo "Got ssh keys for $IP"
-    cat ${currentDir}/config.sh | ssh root@"$IP" "/bin/bash -s"
     echo "Container ready"
 }
 
