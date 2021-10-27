@@ -56,8 +56,9 @@ start_container () {
     rm $FILE
     rm $FILE_FINAL
     sleep 10
-    echo "Getting ssh keys for {$IP}"
-    ssh-keyscan "$IP" >> ~/.ssh/known_hosts
+    echo "Getting ssh keys for $IP"
+    ssh-keyscan -v "$IP" >> ~/.ssh/known_hosts
+    echo "Got ssh keys for $IP"
     cat ${currentDir}/config.sh | ssh root@"$IP" "/bin/bash -s"
     echo "Container ready"
 }
