@@ -55,9 +55,8 @@ start_container () {
     IP=$(az container show --resource-group "$RESOURCE_GROUP" --name "$CONTAINER_ID" | jq -r .ipAddress.ip)
     rm $FILE
     rm $FILE_FINAL
-    sleep 10
     echo "Getting ssh keys for $IP"
-    ssh-keyscan -v "$IP" >> ~/.ssh/known_hosts
+    ssh -o StrictHostKeyChecking=no root@"$IP" "echo ping"
     echo "Got ssh keys for $IP"
     cat ${currentDir}/config.sh | ssh root@"$IP" "/bin/bash -s"
     echo "Container ready"
