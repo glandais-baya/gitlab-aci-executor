@@ -56,7 +56,7 @@ start_container () {
     rm $FILE
     rm $FILE_FINAL
     echo "Waiting for $IP:22"
-    while ! nc -z $IP 22; do   
+    while ! nc -w 1 -z $IP 22; do   
         sleep 1
         echo "Still not accessible"
     done
