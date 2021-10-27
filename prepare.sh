@@ -47,14 +47,19 @@ start_container () {
     else
         cp $FILE $FILE_FINAL
     fi
+    echo "Creating container ${CONTAINER_ID}"
     az container create --resource-group "$RESOURCE_GROUP" --name ${CONTAINER_ID} --file ${FILE_FINAL} > $FILE
+    echo "Container created"
     # debug
     # cat $FILE
     IP=$(az container show --resource-group "$RESOURCE_GROUP" --name "$CONTAINER_ID" | jq -r .ipAddress.ip)
     rm $FILE
     rm $FILE_FINAL
+    sleep 10
+    echo "Getting ssh keys for {$IP}"
     ssh-keyscan "$IP" >> ~/.ssh/known_hosts
     cat ${currentDir}/config.sh ${currentDir}/setup-lfs-common.sh | ssh root@"$IP" "/bin/bash -s"
+    echo "Container ready"
 }
 
 echo "Running in $CONTAINER_ID"

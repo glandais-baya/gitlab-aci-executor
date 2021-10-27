@@ -7,4 +7,4 @@ source ${currentDir}/base.sh # Get variables from base.
 
 echo "Deleting container $CONTAINER_ID"
 
-az container delete --resource-group kotzilla --name "$CONTAINER_ID" -y
+az container delete --resource-group "$RESOURCE_GROUP" --name "$CONTAINER_ID" -y
