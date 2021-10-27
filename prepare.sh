@@ -56,11 +56,7 @@ start_container () {
     rm $FILE
     rm $FILE_FINAL
     echo "Waiting for $IP:22"
-    while ! nc -w 1 -z $IP 22; do   
-        sleep 1
-        echo "Still not accessible"
-    done
-#     timeout 60 sh -c 'until nc -G 1 -z $0 $1; do sleep 1; done' $IP 22
+    timeout 120 sh -c 'until nc -w 1 -z $0 $1; do sleep 1; done' $IP 22
     echo "Getting ssh keys for $IP"
     ssh -o StrictHostKeyChecking=no root@"$IP" "echo ping"
     echo "Got ssh keys for $IP"
